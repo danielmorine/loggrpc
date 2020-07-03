@@ -9,9 +9,9 @@ namespace Extensions.FluentAPI
         {
             builder.Entity<LevelType>(entity =>
             {
-                entity.HasKey(x => x.ID);
                 entity.Property(x => x.ID).HasColumnName(nameof(LevelType) + "ID");
-
+                entity.HasKey(x => x.ID);
+                
                 entity.Ignore(x => x.CreatedDate);
 
                 entity.Property(x => x.Name).HasColumnType("VARCHAR(50)").HasMaxLength(50);

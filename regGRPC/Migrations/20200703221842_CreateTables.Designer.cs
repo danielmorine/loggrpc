@@ -10,8 +10,8 @@ using regGRPC;
 namespace regGRPC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200702014542_Tables")]
-    partial class Tables
+    [Migration("20200703221842_CreateTables")]
+    partial class CreateTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,13 +43,16 @@ namespace regGRPC.Migrations
             modelBuilder.Entity("Scaffolds.LevelType", b =>
                 {
                     b.Property<byte>("ID")
+                        .HasColumnName("LevelTypeID")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("VARCHAR(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("VARCHAR(50)")
+                        .HasMaxLength(50);
 
                     b.HasKey("ID");
 
@@ -60,6 +63,7 @@ namespace regGRPC.Migrations
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("RegistrationProcessID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("CreatedDate")
@@ -91,6 +95,7 @@ namespace regGRPC.Migrations
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("ReportID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Events")
@@ -100,13 +105,19 @@ namespace regGRPC.Migrations
                         .HasColumnType("tinyint");
 
                     b.Property<string>("ReportDescription")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(3000)")
+                        .HasMaxLength(3000);
 
                     b.Property<string>("ReportSource")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(1000)")
+                        .HasMaxLength(1000);
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(500)")
+                        .HasMaxLength(500);
 
                     b.HasKey("ID");
 
@@ -120,7 +131,7 @@ namespace regGRPC.Migrations
                     b.HasOne("Scaffolds.EnvironmentType", "EnvironmentType")
                         .WithMany("RegistrationProcess")
                         .HasForeignKey("EnvironmentTypeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Scaffolds.Report", "Report")
@@ -135,7 +146,7 @@ namespace regGRPC.Migrations
                     b.HasOne("Scaffolds.LevelType", "LevelType")
                         .WithMany("Reports")
                         .HasForeignKey("LevelTypeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

@@ -1,5 +1,4 @@
-﻿
-using Repository.Interfaces;
+﻿using Repository.Interfaces;
 using Scaffolds.interfaces;
 using System;
 

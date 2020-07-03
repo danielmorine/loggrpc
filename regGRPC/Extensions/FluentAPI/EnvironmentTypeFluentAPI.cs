@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Scaffolds;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Extensions.FluentAPI
 {

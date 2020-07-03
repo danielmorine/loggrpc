@@ -58,3 +58,4 @@ C:\projects\regGRPC\regGRPC\obj\Debug\netcoreapp3.1\staticwebassets\regGRPC.Stat
 C:\projects\regGRPC\regGRPC\obj\Debug\netcoreapp3.1\regGRPC.dll
 C:\projects\regGRPC\regGRPC\obj\Debug\netcoreapp3.1\regGRPC.pdb
 C:\projects\regGRPC\regGRPC\obj\Debug\netcoreapp3.1\regGRPC.genruntimeconfig.cache
+C:\projects\regGRPC\regGRPC\obj\Debug\netcoreapp3.1\regGRPC.csprojAssemblyReference.cache

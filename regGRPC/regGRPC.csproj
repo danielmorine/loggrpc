@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200702014542_Tables.cs" />
+    <Compile Remove="Migrations\20200702014542_Tables.Designer.cs" />
+    <Compile Remove="Migrations\20200703215914_PopulateEnvironmentType.cs" />
+    <Compile Remove="Migrations\20200703215914_PopulateEnvironmentType.Designer.cs" />
+    <Compile Remove="Migrations\20200703220552_PopulateLevelType.cs" />
+    <Compile Remove="Migrations\20200703220552_PopulateLevelType.Designer.cs" />
+    <Compile Remove="Migrations\20200703221229_Test.cs" />
+    <Compile Remove="Migrations\20200703221229_Test.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
   </ItemGroup>
 
