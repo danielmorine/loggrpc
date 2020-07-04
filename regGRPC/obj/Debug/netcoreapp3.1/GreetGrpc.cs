@@ -17,6 +17,8 @@ namespace regGRPC {
 
     static readonly grpc::Marshaller<global::regGRPC.HelloRequest> __Marshaller_greet_HelloRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.HelloRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::regGRPC.HelloReply> __Marshaller_greet_HelloReply = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.HelloReply.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::regGRPC.LevelTypeRequest> __Marshaller_greet_LevelTypeRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.LevelTypeRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::regGRPC.LevelTypeReply> __Marshaller_greet_LevelTypeReply = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.LevelTypeReply.Parser.ParseFrom);
 
     static readonly grpc::Method<global::regGRPC.HelloRequest, global::regGRPC.HelloReply> __Method_SayHello = new grpc::Method<global::regGRPC.HelloRequest, global::regGRPC.HelloReply>(
         grpc::MethodType.Unary,
@@ -24,6 +26,13 @@ namespace regGRPC {
         "SayHello",
         __Marshaller_greet_HelloRequest,
         __Marshaller_greet_HelloReply);
+
+    static readonly grpc::Method<global::regGRPC.LevelTypeRequest, global::regGRPC.LevelTypeReply> __Method_SendLevelType = new grpc::Method<global::regGRPC.LevelTypeRequest, global::regGRPC.LevelTypeReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SendLevelType",
+        __Marshaller_greet_LevelTypeRequest,
+        __Marshaller_greet_LevelTypeReply);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -46,6 +55,11 @@ namespace regGRPC {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
+      public virtual global::System.Threading.Tasks.Task<global::regGRPC.LevelTypeReply> SendLevelType(global::regGRPC.LevelTypeRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
     }
 
     /// <summary>Creates service definition that can be registered with a server</summary>
@@ -53,7 +67,8 @@ namespace regGRPC {
     public static grpc::ServerServiceDefinition BindService(GreeterBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_SayHello, serviceImpl.SayHello).Build();
+          .AddMethod(__Method_SayHello, serviceImpl.SayHello)
+          .AddMethod(__Method_SendLevelType, serviceImpl.SendLevelType).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -63,6 +78,7 @@ namespace regGRPC {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, GreeterBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_SayHello, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::regGRPC.HelloRequest, global::regGRPC.HelloReply>(serviceImpl.SayHello));
+      serviceBinder.AddMethod(__Method_SendLevelType, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::regGRPC.LevelTypeRequest, global::regGRPC.LevelTypeReply>(serviceImpl.SendLevelType));
     }
 
   }

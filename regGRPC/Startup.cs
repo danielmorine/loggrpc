@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using regGRPC.Extensions.IOC;
+using Repository;
 
 namespace regGRPC
 {
@@ -28,8 +30,10 @@ namespace regGRPC
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+         
             services.AddGrpc();
+
+         
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,6 +44,9 @@ namespace regGRPC
             }
 
             app.UseRouting();
+
+            var provider = app.ApplicationServices;
+
 
             app.UseEndpoints(endpoints =>
             {
