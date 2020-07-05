@@ -12,6 +12,7 @@ namespace Scaffolds
         public string ReportSource { get; set; }
         public byte LevelTypeID { get; set; }
         public int Events { get; set; }
+        public string Details { get; set; }
 
 
         [NotMapped]

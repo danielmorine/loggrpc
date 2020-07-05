@@ -17,6 +17,7 @@ namespace Extensions.FluentAPI
                 entity.Property(x => x.ReportSource).HasColumnType("VARCHAR(1000)").HasMaxLength(1000).IsRequired();
                 entity.Property(x => x.Title).HasColumnType("VARCHAR(500)").HasMaxLength(500).IsRequired();
                 entity.Property(x => x.LevelTypeID).IsRequired();
+                entity.Property(x => x.Details).HasColumnType("VARCHAR(5000)").HasMaxLength(5000).IsRequired();
 
                 entity.Ignore(x => x.CreatedDate);
 

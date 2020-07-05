@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Repository;
+using regGRPC.Queries.Sql;
 using Scaffolds;
 
 namespace regGRPC
 {
     public class GreeterService : Greeter.GreeterBase
     {
-        private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
+
         public GreeterService(IConfiguration configuration)
         {
-            _configuration = configuration;
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
         public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
         {
@@ -25,43 +25,263 @@ namespace regGRPC
                 Message = "Hello " + request.Name
             });
         }
-
-        public override async Task<LevelTypeReply> SendLevelType(LevelTypeRequest request, ServerCallContext context)
+        public override async Task<DefaultResponse> ValidateRegistrationProcessId(ValidateRegistrationProcessIdRequest request, ServerCallContext context)
         {
-            var conn = _configuration.GetConnectionString("DefaultConnection");
+            using (var sql = new SqlConnection(_connectionString))
+            {
+                var query = "SELECT COUNT([RegistrationProcessID]) FROM [dbo].[RegistrationProcess] WHERE [RegistrationProcessID] = @RegistrationProcessID";
+                using (var command = new SqlCommand(query, sql))
+                {
+                    await sql.OpenAsync();
+                    command.Parameters.AddWithValue("@RegistrationProcessID", request.RegistrationProcessID);
+
+                    var result = (int) await command.ExecuteScalarAsync();
+                    sql.Close();
+
+                    if (result == 1)
+                    {
+                        return new DefaultResponse { Status = true };
+                    }
+
+                    return new DefaultResponse { Status = false };
+                }
+            }
+        }
+        public override async Task<GetByIdRegistrationProcessResponse> GetByIdRegistrationProcess(GetByIdRegistrationProcessRequest request, ServerCallContext context)
+        {
+            var result = new GetByIdRegistrationProcessResponse();
+            using (var sql = new SqlConnection(_connectionString))
+            {
+                var query = @"
+                        SELECT [RP].[RegistrationProcessID]
+                              ,[RP].[CreatedDate]
+                              ,[RP].[OwnerID]
+	                          ,[LT].[Name] AS [LevelTypeName]
+	                          ,[EV].[Name] AS [EnvironmentTypeName]
+	                          ,[RE].[Title] 
+	                          ,[RE].[ReportSource]
+	                          ,[RE].[Events]
+                              ,[RE].[Details]
+                          FROM [dbo].[RegistrationProcess] AS [RP]
+                          INNER JOIN [dbo].[Report] AS [RE] ON [RP].[ReportID] = [RE].[ReportID]
+                          INNER JOIN [dbo].[EnvironmentType] AS [EV] ON [RP].[EnvironmentTypeID] = [EV].[EnvironmentTypeID]
+                          INNER JOIN [dbo].[LevelType] AS [LT] ON [RE].[LevelTypeID] = [LT].[LevelTypeID]
+                          WHERE [RP].[RegistrationProcessID] = @RegistrationProcessID";
+
+                using (var command = new SqlCommand(query, sql))
+                {
+                    await sql.OpenAsync();
+
+                    command.Parameters.AddWithValue("@RegistrationProcessID", request.RegistrationProcessID);
+
+                    var reader = await command.ExecuteReaderAsync();
+
+                    while (await reader.ReadAsync())
+                    {
+                        result.RegistrationProcessID = reader.GetGuid(0).ToString();
+                        result.CreatedDate = reader.GetDateTimeOffset(1).ToString();
+                        result.OwnerID = reader.GetGuid(2).ToString();
+                        result.LevelTypeName = reader.GetString(3);
+                        result.EnvironmentTypeName = reader.GetString(4);
+                        result.Title = reader.GetString(5);
+                        result.ReportSource = reader.GetString(6);
+                        result.Events = reader.GetInt32(7);
+                        result.Details = reader.GetString(8);
+                    }
+
+                    reader.Close();
+                    sql.Close();
+                }
+            }
+            return result;
+        }
+        public override async Task<GetAllRegistrationProcessResponse> SendGetAllRegistrationProcess(GetAllRegistrationProcessRequest request, ServerCallContext context)
+        {
+            var registrationProcess = new GetAllRegistrationProcessResponse();
+
+            using (var sql = new SqlConnection(_connectionString))
+            {
+                var query = @"
+                    SELECT 
+                    [LT].[Name] AS [LevelTypeName],
+                    [EV].[Name] AS [EnvironmentTypeName],
+                    [RE].[Events],
+                    [RE].[ReportDescription],
+                    [RE].[ReportSource],
+                    [RP].[RegistrationProcessID],
+                    [RP].[CreatedDate]
+                    FROM [dbo].[RegistrationProcess] AS [RP]
+                    INNER JOIN [dbo].[Report] AS [RE] ON [RP].[ReportID] = [RE].[ReportID]
+                    INNER JOIN [dbo].[LevelType] AS [LT] ON [RE].[LevelTypeID] = [LT].[LevelTypeID]
+                    INNER JOIN [dbo].[EnvironmentType] AS [EV] ON [RP].[EnvironmentTypeID] = [EV].[EnvironmentTypeID]
+                    WHERE [RP].[IsActive] = 1
+                    ORDER BY [RP].[CreatedDate] DESC";
+
+                using(var command = new SqlCommand(query, sql))
+                {
+                    await sql.OpenAsync();
+
+                    var reader = await command.ExecuteReaderAsync();
+                    
+                    while (await reader.ReadAsync())
+                    {
+                        registrationProcess.List.Add(new GetAllRegistrationProcessObject 
+                        { 
+                            LevelTypeName = reader.GetString(0),
+                            EnvironmentTypeName = reader.GetString(1),
+                            Events = reader.GetInt32(2),
+                            ReportDescription = reader.GetString(3),
+                            ReportSource = reader.GetString(4),
+                            RegistrationProcessID = reader.GetGuid(5).ToString(),
+                            CreatedDate = reader.GetDateTimeOffset(6).ToString()
+                        });
+                    }
+                    reader.Close();
+                    sql.Close();
+                }
+            }
+
+            return registrationProcess;
+        }
+        public override async Task<DefaultResponse> SendValidateEnvironmentTypeRequest(ValidateEnvironmentTypeRequest model, ServerCallContext context)
+        {
             try
             {
+                using (var sql = new SqlConnection(_connectionString))
+                {
+                    var query = "SELECT COUNT([EnvironmentTypeID]) AS [EnvironmentTypeIDExists] FROM [dbo].[EnvironmentType] WHERE [EnvironmentTypeID] = @EnvironmentTypeID";
+                    using var command = new SqlCommand(query, sql);
+                    await sql.OpenAsync();
+                    command.Parameters.AddWithValue("@EnvironmentTypeID", (byte) model.EnvironmentTypeID);
+
+                    var result = (int) await command.ExecuteScalarAsync();
+
+                    if (result == 1)
+                    {
+                        sql.Close();
+                        return new DefaultResponse { Status = true };
+                    } else
+                    {
+                        return new DefaultResponse { Status = false };
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
+                return new DefaultResponse { Status = false };
+            }                      
+        }
+        public override async Task<DefaultResponse> SendValidateLevelTypeRequest(ValidateLevelTypeRequest model, ServerCallContext context)
+        {
+            try
+            {
+                using (var sql = new SqlConnection(_connectionString))
+                {
+                    var query = "SELECT COUNT([LevelTypeID]) AS [LevelTypeExists] FROM [dbo].[LevelType] WHERE [LevelTypeID] = @LevelTypeID";
+                    using var command = new SqlCommand(query, sql);
+                    await sql.OpenAsync();
+                    command.Parameters.AddWithValue("@LevelTypeID", model.LevelTypeID);
 
-                throw;
+                    var result = (int)await command.ExecuteScalarAsync();
+
+                    if (result == 1)
+                    {
+                        sql.Close();
+                        return new DefaultResponse { Status = true };
+                    }
+                    else
+                    {
+                        return new DefaultResponse { Status = false };
+                    }
+                }
             }
-            return new LevelTypeReply { Status = false };
-            
-                
-            //try
-            //{
-            //    var count = _levelTypeRepository.CountAsync().Result + 1;
+            catch (Exception)
+            {
+                return new DefaultResponse { Status = false };
+            }           
+        }
+        public override async Task<DefaultResponse> SendRegistrationProcess(RegistrationProcessRequest request, ServerCallContext context)
+        {
+            try
+            {
+                var result = await AddAsync(request);
+                return new DefaultResponse { Status = result };
+            }
+            catch (Exception)
+            {
+                return new DefaultResponse { Status = false };
+            }                                       
+        }
+        private async Task<bool> AddAsync(RegistrationProcessRequest request)
+        {            
+            using var sql = new SqlConnection(_connectionString);
+            await sql.OpenAsync();
+            using var transaction = sql.BeginTransaction();
+            SqlCommand command = sql.CreateCommand();
+            command.Transaction = transaction;
 
-            //    _levelTypeRepository.AddAsync(new LevelType
-            //    {
-            //        CreatedDate = DateTimeOffset.UtcNow,
-            //        Name = request.Name,
-            //        NormalizedName = request.Normalized,
-            //        ID = (byte)count
-            //    }).Wait();
+            var report = new Report
+            {
+                Events = request.Events,
+                ID = Guid.NewGuid(),
+                LevelTypeID = (byte)request.LevelTypeID,
+                ReportDescription = request.ReportDescription,
+                ReportSource = request.ReportSource,
+                Title = request.Title
+            };
 
-            //    _levelTypeRepository.SaveChangeAsync().Wait();
+            var registrationProcess = new RegistrationProcess
+            {
+                ReportID = report.ID,
+                CreatedDate = DateTimeOffset.UtcNow,
+                ID = Guid.NewGuid(),
+                EnvironmentTypeID = (byte)request.EnvironmentTypeID,
+                IsActive = true,
+                OwnerID = Guid.Parse(request.OwnerID)
+            };
 
-            //    return Task.FromResult(new LevelTypeReply { Status = true });
+            command = await AddReportAsync(command, report);
+            command = await AddRegistrationProcessAsync(command, registrationProcess);
 
-            //}
-            //catch (Exception)
-            //{
-            //    return Task.FromResult(new LevelTypeReply { Status = false });
-            //}
-           
+            try
+            {
+                await transaction.CommitAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                return false;
+            }
+        }
+        private async Task<SqlCommand> AddReportAsync(SqlCommand command, Report model)
+        {
+            command.CommandText = RegistrationProcessRequestSQL.QueryAddReport();
+            command.Parameters.AddWithValue("@ReportID", model.ID);
+            command.Parameters.AddWithValue("@Title", model.Title);
+            command.Parameters.AddWithValue("@ReportDescription", model.ReportDescription);
+            command.Parameters.AddWithValue("@ReportSource", model.ReportSource);
+            command.Parameters.AddWithValue("@LevelTypeID", model.LevelTypeID);
+            command.Parameters.AddWithValue("@Events", model.Events);
+
+            await command.ExecuteNonQueryAsync();
+
+            return command;
+        }
+        private async Task<SqlCommand> AddRegistrationProcessAsync(SqlCommand command, RegistrationProcess model)
+        {
+            command.CommandText = RegistrationProcessRequestSQL.QueryAddRegistrationProcess();
+
+            command.Parameters.AddWithValue("@RegistrationProcessID", model.ID);
+            command.Parameters.AddWithValue("@CreatedDate", model.CreatedDate);
+            command.Parameters.AddWithValue("@IsActive", model.IsActive);
+            command.Parameters.AddWithValue("@ReportIDRegistrationProcess", model.ReportID);
+            command.Parameters.AddWithValue("@OwnerID", model.OwnerID);
+            command.Parameters.AddWithValue("@EnvironmentTypeID", model.EnvironmentTypeID);
+
+            await command.ExecuteNonQueryAsync();
+
+            return command;
         }
     }
 }
