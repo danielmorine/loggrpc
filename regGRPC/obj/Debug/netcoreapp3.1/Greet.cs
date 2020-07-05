@@ -51,23 +51,29 @@ namespace regGRPC {
             "CzIbLmdyZWV0LkFyY2hpdmVSZXF1ZXN0T2JqZWN0IiIKFEFyY2hpdmVSZXF1",
             "ZXN0T2JqZWN0EgoKAmlkGAEgASgJIjoKDURlbGV0ZVJlcXVlc3QSKQoEbGlz",
             "dBgBIAMoCzIbLmdyZWV0LkFyY2hpdmVSZXF1ZXN0T2JqZWN0IiEKE0RlbGV0",
-            "ZVJlcXVlc3RPYmplY3QSCgoCaWQYASABKAky3AUKB0dyZWV0ZXISVAoXU2Vu",
-            "ZFJlZ2lzdHJhdGlvblByb2Nlc3MSIS5ncmVldC5SZWdpc3RyYXRpb25Qcm9j",
-            "ZXNzUmVxdWVzdBoWLmdyZWV0LkRlZmF1bHRSZXNwb25zZRJjCiJTZW5kVmFs",
-            "aWRhdGVFbnZpcm9ubWVudFR5cGVSZXF1ZXN0EiUuZ3JlZXQuVmFsaWRhdGVF",
-            "bnZpcm9ubWVudFR5cGVSZXF1ZXN0GhYuZ3JlZXQuRGVmYXVsdFJlc3BvbnNl",
-            "ElcKHFNlbmRWYWxpZGF0ZUxldmVsVHlwZVJlcXVlc3QSHy5ncmVldC5WYWxp",
-            "ZGF0ZUxldmVsVHlwZVJlcXVlc3QaFi5ncmVldC5EZWZhdWx0UmVzcG9uc2US",
-            "cgodU2VuZEdldEFsbFJlZ2lzdHJhdGlvblByb2Nlc3MSJy5ncmVldC5HZXRB",
-            "bGxSZWdpc3RyYXRpb25Qcm9jZXNzUmVxdWVzdBooLmdyZWV0LkdldEFsbFJl",
-            "Z2lzdHJhdGlvblByb2Nlc3NSZXNwb25zZRJxChpHZXRCeUlkUmVnaXN0cmF0",
-            "aW9uUHJvY2VzcxIoLmdyZWV0LkdldEJ5SWRSZWdpc3RyYXRpb25Qcm9jZXNz",
-            "UmVxdWVzdBopLmdyZWV0LkdldEJ5SWRSZWdpc3RyYXRpb25Qcm9jZXNzUmVz",
-            "cG9uc2USZAodVmFsaWRhdGVSZWdpc3RyYXRpb25Qcm9jZXNzSWQSKy5ncmVl",
-            "dC5WYWxpZGF0ZVJlZ2lzdHJhdGlvblByb2Nlc3NJZFJlcXVlc3QaFi5ncmVl",
-            "dC5EZWZhdWx0UmVzcG9uc2USOAoHQXJjaGl2ZRIVLmdyZWV0LkFyY2hpdmVS",
-            "ZXF1ZXN0GhYuZ3JlZXQuRGVmYXVsdFJlc3BvbnNlEjYKBkRlbGV0ZRIULmdy",
-            "ZWV0LkRlbGV0ZVJlcXVlc3QaFi5ncmVldC5EZWZhdWx0UmVzcG9uc2VCCqoC",
+            "ZVJlcXVlc3RPYmplY3QSCgoCaWQYASABKAkimwEKIEZpbHRlclJlZ2lzdHJh",
+            "dGlvblByb2Nlc3NSZXF1ZXN0EhEKCWVudkZpbHRlchgBIAEoCRITCgtsZXZl",
+            "bEZpbHRlchgCIAEoCRIPCgdvcmRlckJ5GAMgASgJEhUKDXNvcnREaXJlY3Rp",
+            "b24YBCABKAkSEgoKc2VhcmNoVHlwZRgFIAEoCRITCgtzZWFyY2hWYWx1ZRgG",
+            "IAEoCTLMBgoHR3JlZXRlchJUChdTZW5kUmVnaXN0cmF0aW9uUHJvY2VzcxIh",
+            "LmdyZWV0LlJlZ2lzdHJhdGlvblByb2Nlc3NSZXF1ZXN0GhYuZ3JlZXQuRGVm",
+            "YXVsdFJlc3BvbnNlEmMKIlNlbmRWYWxpZGF0ZUVudmlyb25tZW50VHlwZVJl",
+            "cXVlc3QSJS5ncmVldC5WYWxpZGF0ZUVudmlyb25tZW50VHlwZVJlcXVlc3Qa",
+            "Fi5ncmVldC5EZWZhdWx0UmVzcG9uc2USVwocU2VuZFZhbGlkYXRlTGV2ZWxU",
+            "eXBlUmVxdWVzdBIfLmdyZWV0LlZhbGlkYXRlTGV2ZWxUeXBlUmVxdWVzdBoW",
+            "LmdyZWV0LkRlZmF1bHRSZXNwb25zZRJyCh1TZW5kR2V0QWxsUmVnaXN0cmF0",
+            "aW9uUHJvY2VzcxInLmdyZWV0LkdldEFsbFJlZ2lzdHJhdGlvblByb2Nlc3NS",
+            "ZXF1ZXN0GiguZ3JlZXQuR2V0QWxsUmVnaXN0cmF0aW9uUHJvY2Vzc1Jlc3Bv",
+            "bnNlEnEKGkdldEJ5SWRSZWdpc3RyYXRpb25Qcm9jZXNzEiguZ3JlZXQuR2V0",
+            "QnlJZFJlZ2lzdHJhdGlvblByb2Nlc3NSZXF1ZXN0GikuZ3JlZXQuR2V0QnlJ",
+            "ZFJlZ2lzdHJhdGlvblByb2Nlc3NSZXNwb25zZRJkCh1WYWxpZGF0ZVJlZ2lz",
+            "dHJhdGlvblByb2Nlc3NJZBIrLmdyZWV0LlZhbGlkYXRlUmVnaXN0cmF0aW9u",
+            "UHJvY2Vzc0lkUmVxdWVzdBoWLmdyZWV0LkRlZmF1bHRSZXNwb25zZRI4CgdB",
+            "cmNoaXZlEhUuZ3JlZXQuQXJjaGl2ZVJlcXVlc3QaFi5ncmVldC5EZWZhdWx0",
+            "UmVzcG9uc2USNgoGRGVsZXRlEhQuZ3JlZXQuRGVsZXRlUmVxdWVzdBoWLmdy",
+            "ZWV0LkRlZmF1bHRSZXNwb25zZRJuChlGaWx0ZXJSZWdpc3RyYXRpb25Qcm9j",
+            "ZXNzEicuZ3JlZXQuRmlsdGVyUmVnaXN0cmF0aW9uUHJvY2Vzc1JlcXVlc3Qa",
+            "KC5ncmVldC5HZXRBbGxSZWdpc3RyYXRpb25Qcm9jZXNzUmVzcG9uc2VCCqoC",
             "B3JlZ0dSUENiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
@@ -85,7 +91,8 @@ namespace regGRPC {
             new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.ArchiveRequest), global::regGRPC.ArchiveRequest.Parser, new[]{ "List" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.ArchiveRequestObject), global::regGRPC.ArchiveRequestObject.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.DeleteRequest), global::regGRPC.DeleteRequest.Parser, new[]{ "List" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.DeleteRequestObject), global::regGRPC.DeleteRequestObject.Parser, new[]{ "Id" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.DeleteRequestObject), global::regGRPC.DeleteRequestObject.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.FilterRegistrationProcessRequest), global::regGRPC.FilterRegistrationProcessRequest.Parser, new[]{ "EnvFilter", "LevelFilter", "OrderBy", "SortDirection", "SearchType", "SearchValue" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2398,6 +2405,275 @@ namespace regGRPC {
             break;
           case 10: {
             Id = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class FilterRegistrationProcessRequest : pb::IMessage<FilterRegistrationProcessRequest> {
+    private static readonly pb::MessageParser<FilterRegistrationProcessRequest> _parser = new pb::MessageParser<FilterRegistrationProcessRequest>(() => new FilterRegistrationProcessRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FilterRegistrationProcessRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::regGRPC.GreetReflection.Descriptor.MessageTypes[14]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FilterRegistrationProcessRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FilterRegistrationProcessRequest(FilterRegistrationProcessRequest other) : this() {
+      envFilter_ = other.envFilter_;
+      levelFilter_ = other.levelFilter_;
+      orderBy_ = other.orderBy_;
+      sortDirection_ = other.sortDirection_;
+      searchType_ = other.searchType_;
+      searchValue_ = other.searchValue_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FilterRegistrationProcessRequest Clone() {
+      return new FilterRegistrationProcessRequest(this);
+    }
+
+    /// <summary>Field number for the "envFilter" field.</summary>
+    public const int EnvFilterFieldNumber = 1;
+    private string envFilter_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string EnvFilter {
+      get { return envFilter_; }
+      set {
+        envFilter_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "levelFilter" field.</summary>
+    public const int LevelFilterFieldNumber = 2;
+    private string levelFilter_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string LevelFilter {
+      get { return levelFilter_; }
+      set {
+        levelFilter_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "orderBy" field.</summary>
+    public const int OrderByFieldNumber = 3;
+    private string orderBy_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string OrderBy {
+      get { return orderBy_; }
+      set {
+        orderBy_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "sortDirection" field.</summary>
+    public const int SortDirectionFieldNumber = 4;
+    private string sortDirection_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string SortDirection {
+      get { return sortDirection_; }
+      set {
+        sortDirection_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "searchType" field.</summary>
+    public const int SearchTypeFieldNumber = 5;
+    private string searchType_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string SearchType {
+      get { return searchType_; }
+      set {
+        searchType_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "searchValue" field.</summary>
+    public const int SearchValueFieldNumber = 6;
+    private string searchValue_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string SearchValue {
+      get { return searchValue_; }
+      set {
+        searchValue_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FilterRegistrationProcessRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FilterRegistrationProcessRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (EnvFilter != other.EnvFilter) return false;
+      if (LevelFilter != other.LevelFilter) return false;
+      if (OrderBy != other.OrderBy) return false;
+      if (SortDirection != other.SortDirection) return false;
+      if (SearchType != other.SearchType) return false;
+      if (SearchValue != other.SearchValue) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (EnvFilter.Length != 0) hash ^= EnvFilter.GetHashCode();
+      if (LevelFilter.Length != 0) hash ^= LevelFilter.GetHashCode();
+      if (OrderBy.Length != 0) hash ^= OrderBy.GetHashCode();
+      if (SortDirection.Length != 0) hash ^= SortDirection.GetHashCode();
+      if (SearchType.Length != 0) hash ^= SearchType.GetHashCode();
+      if (SearchValue.Length != 0) hash ^= SearchValue.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (EnvFilter.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(EnvFilter);
+      }
+      if (LevelFilter.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(LevelFilter);
+      }
+      if (OrderBy.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(OrderBy);
+      }
+      if (SortDirection.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(SortDirection);
+      }
+      if (SearchType.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(SearchType);
+      }
+      if (SearchValue.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(SearchValue);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (EnvFilter.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(EnvFilter);
+      }
+      if (LevelFilter.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(LevelFilter);
+      }
+      if (OrderBy.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OrderBy);
+      }
+      if (SortDirection.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(SortDirection);
+      }
+      if (SearchType.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(SearchType);
+      }
+      if (SearchValue.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(SearchValue);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FilterRegistrationProcessRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.EnvFilter.Length != 0) {
+        EnvFilter = other.EnvFilter;
+      }
+      if (other.LevelFilter.Length != 0) {
+        LevelFilter = other.LevelFilter;
+      }
+      if (other.OrderBy.Length != 0) {
+        OrderBy = other.OrderBy;
+      }
+      if (other.SortDirection.Length != 0) {
+        SortDirection = other.SortDirection;
+      }
+      if (other.SearchType.Length != 0) {
+        SearchType = other.SearchType;
+      }
+      if (other.SearchValue.Length != 0) {
+        SearchValue = other.SearchValue;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            EnvFilter = input.ReadString();
+            break;
+          }
+          case 18: {
+            LevelFilter = input.ReadString();
+            break;
+          }
+          case 26: {
+            OrderBy = input.ReadString();
+            break;
+          }
+          case 34: {
+            SortDirection = input.ReadString();
+            break;
+          }
+          case 42: {
+            SearchType = input.ReadString();
+            break;
+          }
+          case 50: {
+            SearchValue = input.ReadString();
             break;
           }
         }

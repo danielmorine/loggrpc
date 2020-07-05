@@ -20,6 +20,42 @@ namespace regGRPC
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
+        public override async Task<GetAllRegistrationProcessResponse> FilterRegistrationProcess(FilterRegistrationProcessRequest request, ServerCallContext context)
+        {
+            var registrationProcess = new GetAllRegistrationProcessResponse();
+            using (var sql = new SqlConnection(_connectionString))
+            {
+                using var command = new SqlCommand(RegistrationProcessRequestSQL.QueryFilterRegistrationProcess(), sql);
+                await sql.OpenAsync();
+
+                command.Parameters.AddWithValue("@EnvFilterValue", request.EnvFilter);
+                command.Parameters.AddWithValue("@LevelFilterValue", request.LevelFilter);
+                command.Parameters.AddWithValue("@OrderByValue", request.OrderBy);
+                command.Parameters.AddWithValue("@SortDirectionValue", request.SortDirection);
+                command.Parameters.AddWithValue("@SearchTypeValue", request.SearchType);
+                command.Parameters.AddWithValue("@SearchValueQ", request.SearchValue);
+
+                var reader = await command.ExecuteReaderAsync();
+
+                while (await reader.ReadAsync())
+                {
+                    registrationProcess.List.Add(new GetAllRegistrationProcessObject
+                    {
+                        LevelTypeName = reader.GetString(0),
+                        EnvironmentTypeName = reader.GetString(1),
+                        Events = reader.GetInt32(2),
+                        ReportDescription = reader.GetString(3),
+                        ReportSource = reader.GetString(4),
+                        RegistrationProcessID = reader.GetGuid(5).ToString(),
+                        CreatedDate = reader.GetDateTimeOffset(6).ToString()
+                    });
+                }
+
+                reader.Close();
+                sql.Close();
+            }
+            return registrationProcess;
+        }
         public override async Task<DefaultResponse> Archive(ArchiveRequest request, ServerCallContext context)
         {
             using var sql = new SqlConnection(_connectionString);
@@ -46,7 +82,6 @@ namespace regGRPC
                 return new DefaultResponse { Status = false };
             }
         }
-
         public override async Task<DefaultResponse> Delete(DeleteRequest request, ServerCallContext context)
         {
             using var sql = new SqlConnection(_connectionString);
@@ -73,8 +108,6 @@ namespace regGRPC
                 return new DefaultResponse { Status = false };
             }
         }
-
-
         public override async Task<DefaultResponse> ValidateRegistrationProcessId(ValidateRegistrationProcessIdRequest request, ServerCallContext context)
         {
             using (var sql = new SqlConnection(_connectionString))
@@ -346,7 +379,6 @@ namespace regGRPC
 
             return command;
         }
-
         private async Task<SqlCommand> DeleteRegistrationProcessAsync(SqlCommand command, string registrationProcessID, int position)
         {
             var reportID = await GetReportIDAsync(registrationProcessID);
@@ -367,7 +399,6 @@ namespace regGRPC
 
             return command;
         }
-
         private async Task<Guid> GetReportIDAsync(string registrationProcessID)
         {
             using var sql = new SqlConnection(_connectionString);

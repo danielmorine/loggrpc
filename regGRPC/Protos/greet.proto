@@ -16,7 +16,7 @@ service Greeter {
   rpc ValidateRegistrationProcessId (ValidateRegistrationProcessIdRequest) returns (DefaultResponse); 
   rpc Archive (ArchiveRequest) returns (DefaultResponse);
   rpc Delete (DeleteRequest) returns (DefaultResponse);
-
+  rpc FilterRegistrationProcess (FilterRegistrationProcessRequest) returns (GetAllRegistrationProcessResponse);
 }
 
 message RegistrationProcessRequest {
@@ -59,7 +59,6 @@ message GetAllRegistrationProcessObject {
 	string createdDate = 7;
 }
 
-
 message GetByIdRegistrationProcessRequest {
 	string registrationProcessID = 1;
 }
@@ -96,4 +95,13 @@ message DeleteRequest {
 
 message DeleteRequestObject {
 	string id = 1;		 
+}
+
+message FilterRegistrationProcessRequest {
+	string envFilter = 1;
+	string levelFilter = 2;
+	string orderBy = 3;
+	string sortDirection = 4;
+	string searchType = 5;
+	string searchValue = 6;
 }
