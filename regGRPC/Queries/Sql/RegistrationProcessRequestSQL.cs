@@ -84,7 +84,8 @@
                     INNER JOIN [dbo].[RegistrationProcess] AS RP ON RE.ReportID = RP.ReportID
                     INNER JOIN [dbo].[EnvironmentType] AS [EV] ON [RP].[EnvironmentTypeID] = [EV].[EnvironmentTypeID]
                     INNER JOIN [dbo].[LevelType] AS [LT] ON [RE].[LevelTypeID] = [LT].[LevelTypeID]
-                    WHERE (@HasEnv = 0 OR (RP.EnvironmentTypeID = @EnvFilter)) AND 
+                    WHERE [RP].[IsActive] = 1 AND
+                          (@HasEnv = 0 OR (RP.EnvironmentTypeID = @EnvFilter)) AND 
 	                      (@HasLevel = 0 OR ([RE].[LevelTypeID] = @LevelFilter)) AND
 	                      (@HasSearch = 0 OR (@SearchType = 'reportSource' AND [RE].[ReportSource] LIKE '%' + @SearchValueQ +'%') OR (RE.ReportDescription LIKE '%' + @SearchValueQ +'%'))
                     ORDER BY
