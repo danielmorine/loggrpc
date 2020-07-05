@@ -15,8 +15,6 @@ namespace regGRPC {
   {
     static readonly string __ServiceName = "greet.Greeter";
 
-    static readonly grpc::Marshaller<global::regGRPC.HelloRequest> __Marshaller_greet_HelloRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.HelloRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::regGRPC.HelloReply> __Marshaller_greet_HelloReply = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.HelloReply.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::regGRPC.RegistrationProcessRequest> __Marshaller_greet_RegistrationProcessRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.RegistrationProcessRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::regGRPC.DefaultResponse> __Marshaller_greet_DefaultResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.DefaultResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::regGRPC.ValidateEnvironmentTypeRequest> __Marshaller_greet_ValidateEnvironmentTypeRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.ValidateEnvironmentTypeRequest.Parser.ParseFrom);
@@ -26,13 +24,8 @@ namespace regGRPC {
     static readonly grpc::Marshaller<global::regGRPC.GetByIdRegistrationProcessRequest> __Marshaller_greet_GetByIdRegistrationProcessRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.GetByIdRegistrationProcessRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::regGRPC.GetByIdRegistrationProcessResponse> __Marshaller_greet_GetByIdRegistrationProcessResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.GetByIdRegistrationProcessResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::regGRPC.ValidateRegistrationProcessIdRequest> __Marshaller_greet_ValidateRegistrationProcessIdRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.ValidateRegistrationProcessIdRequest.Parser.ParseFrom);
-
-    static readonly grpc::Method<global::regGRPC.HelloRequest, global::regGRPC.HelloReply> __Method_SayHello = new grpc::Method<global::regGRPC.HelloRequest, global::regGRPC.HelloReply>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "SayHello",
-        __Marshaller_greet_HelloRequest,
-        __Marshaller_greet_HelloReply);
+    static readonly grpc::Marshaller<global::regGRPC.ArchiveRequest> __Marshaller_greet_ArchiveRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.ArchiveRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::regGRPC.DeleteRequest> __Marshaller_greet_DeleteRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::regGRPC.DeleteRequest.Parser.ParseFrom);
 
     static readonly grpc::Method<global::regGRPC.RegistrationProcessRequest, global::regGRPC.DefaultResponse> __Method_SendRegistrationProcess = new grpc::Method<global::regGRPC.RegistrationProcessRequest, global::regGRPC.DefaultResponse>(
         grpc::MethodType.Unary,
@@ -76,6 +69,20 @@ namespace regGRPC {
         __Marshaller_greet_ValidateRegistrationProcessIdRequest,
         __Marshaller_greet_DefaultResponse);
 
+    static readonly grpc::Method<global::regGRPC.ArchiveRequest, global::regGRPC.DefaultResponse> __Method_Archive = new grpc::Method<global::regGRPC.ArchiveRequest, global::regGRPC.DefaultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Archive",
+        __Marshaller_greet_ArchiveRequest,
+        __Marshaller_greet_DefaultResponse);
+
+    static readonly grpc::Method<global::regGRPC.DeleteRequest, global::regGRPC.DefaultResponse> __Method_Delete = new grpc::Method<global::regGRPC.DeleteRequest, global::regGRPC.DefaultResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Delete",
+        __Marshaller_greet_DeleteRequest,
+        __Marshaller_greet_DefaultResponse);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -92,11 +99,6 @@ namespace regGRPC {
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::regGRPC.HelloReply> SayHello(global::regGRPC.HelloRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
       public virtual global::System.Threading.Tasks.Task<global::regGRPC.DefaultResponse> SendRegistrationProcess(global::regGRPC.RegistrationProcessRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
@@ -127,6 +129,16 @@ namespace regGRPC {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
+      public virtual global::System.Threading.Tasks.Task<global::regGRPC.DefaultResponse> Archive(global::regGRPC.ArchiveRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::regGRPC.DefaultResponse> Delete(global::regGRPC.DeleteRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
     }
 
     /// <summary>Creates service definition that can be registered with a server</summary>
@@ -134,13 +146,14 @@ namespace regGRPC {
     public static grpc::ServerServiceDefinition BindService(GreeterBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_SayHello, serviceImpl.SayHello)
           .AddMethod(__Method_SendRegistrationProcess, serviceImpl.SendRegistrationProcess)
           .AddMethod(__Method_SendValidateEnvironmentTypeRequest, serviceImpl.SendValidateEnvironmentTypeRequest)
           .AddMethod(__Method_SendValidateLevelTypeRequest, serviceImpl.SendValidateLevelTypeRequest)
           .AddMethod(__Method_SendGetAllRegistrationProcess, serviceImpl.SendGetAllRegistrationProcess)
           .AddMethod(__Method_GetByIdRegistrationProcess, serviceImpl.GetByIdRegistrationProcess)
-          .AddMethod(__Method_ValidateRegistrationProcessId, serviceImpl.ValidateRegistrationProcessId).Build();
+          .AddMethod(__Method_ValidateRegistrationProcessId, serviceImpl.ValidateRegistrationProcessId)
+          .AddMethod(__Method_Archive, serviceImpl.Archive)
+          .AddMethod(__Method_Delete, serviceImpl.Delete).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -149,13 +162,14 @@ namespace regGRPC {
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     public static void BindService(grpc::ServiceBinderBase serviceBinder, GreeterBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_SayHello, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::regGRPC.HelloRequest, global::regGRPC.HelloReply>(serviceImpl.SayHello));
       serviceBinder.AddMethod(__Method_SendRegistrationProcess, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::regGRPC.RegistrationProcessRequest, global::regGRPC.DefaultResponse>(serviceImpl.SendRegistrationProcess));
       serviceBinder.AddMethod(__Method_SendValidateEnvironmentTypeRequest, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::regGRPC.ValidateEnvironmentTypeRequest, global::regGRPC.DefaultResponse>(serviceImpl.SendValidateEnvironmentTypeRequest));
       serviceBinder.AddMethod(__Method_SendValidateLevelTypeRequest, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::regGRPC.ValidateLevelTypeRequest, global::regGRPC.DefaultResponse>(serviceImpl.SendValidateLevelTypeRequest));
       serviceBinder.AddMethod(__Method_SendGetAllRegistrationProcess, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::regGRPC.GetAllRegistrationProcessRequest, global::regGRPC.GetAllRegistrationProcessResponse>(serviceImpl.SendGetAllRegistrationProcess));
       serviceBinder.AddMethod(__Method_GetByIdRegistrationProcess, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::regGRPC.GetByIdRegistrationProcessRequest, global::regGRPC.GetByIdRegistrationProcessResponse>(serviceImpl.GetByIdRegistrationProcess));
       serviceBinder.AddMethod(__Method_ValidateRegistrationProcessId, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::regGRPC.ValidateRegistrationProcessIdRequest, global::regGRPC.DefaultResponse>(serviceImpl.ValidateRegistrationProcessId));
+      serviceBinder.AddMethod(__Method_Archive, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::regGRPC.ArchiveRequest, global::regGRPC.DefaultResponse>(serviceImpl.Archive));
+      serviceBinder.AddMethod(__Method_Delete, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::regGRPC.DeleteRequest, global::regGRPC.DefaultResponse>(serviceImpl.Delete));
     }
 
   }

@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Google.Protobuf;
 using Grpc.Core;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Microsoft.VisualBasic;
 using regGRPC.Queries.Sql;
 using Scaffolds;
 
@@ -18,13 +20,61 @@ namespace regGRPC
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
-        public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
+        public override async Task<DefaultResponse> Archive(ArchiveRequest request, ServerCallContext context)
         {
-            return Task.FromResult(new HelloReply
+            using var sql = new SqlConnection(_connectionString);
+            await sql.OpenAsync();
+            using var transaction = sql.BeginTransaction();
+            SqlCommand command = sql.CreateCommand();
+            command.Transaction = transaction;
+
+            for (var i =  0; i < request.List.ToArray().Length; i++)
             {
-                Message = "Hello " + request.Name
-            });
+                command = await ArchiveRegistrationProcessAsync(command, request.List.ToArray()[i].Id, i);
+            }
+
+            try
+            {
+                await transaction.CommitAsync();
+                sql.Close();
+                return new DefaultResponse { Status = true };
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                sql.Close();
+                return new DefaultResponse { Status = false };
+            }
         }
+
+        public override async Task<DefaultResponse> Delete(DeleteRequest request, ServerCallContext context)
+        {
+            using var sql = new SqlConnection(_connectionString);
+            await sql.OpenAsync();
+            using var transaction = sql.BeginTransaction();
+            SqlCommand command = sql.CreateCommand();
+            command.Transaction = transaction;
+
+            for (var i = 0; i < request.List.ToArray().Length; i++)
+            {
+                command = await DeleteRegistrationProcessAsync(command, request.List.ToArray()[i].Id, i);
+            }
+
+            try
+            {
+                await transaction.CommitAsync();
+                sql.Close();
+                return new DefaultResponse { Status = true };
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                sql.Close();
+                return new DefaultResponse { Status = false };
+            }
+        }
+
+
         public override async Task<DefaultResponse> ValidateRegistrationProcessId(ValidateRegistrationProcessIdRequest request, ServerCallContext context)
         {
             using (var sql = new SqlConnection(_connectionString))
@@ -246,11 +296,13 @@ namespace regGRPC
             try
             {
                 await transaction.CommitAsync();
+                sql.Close();
                 return true;
             }
             catch (Exception)
             {
                 await transaction.RollbackAsync();
+                sql.Close();
                 return false;
             }
         }
@@ -282,6 +334,51 @@ namespace regGRPC
             await command.ExecuteNonQueryAsync();
 
             return command;
+        }
+        private async Task<SqlCommand> ArchiveRegistrationProcessAsync(SqlCommand command, string registrationProcessID, int position)
+        {
+            command.CommandText = string
+                .Format(@"UPDATE [dbo].[RegistrationProcess] SET [IsActive] = 0 WHERE [RegistrationProcessID] = @RegistrationProcessID{0}", position);
+
+            command.Parameters.AddWithValue(string.Format("@RegistrationProcessID{0}", position), registrationProcessID);
+
+            await command.ExecuteNonQueryAsync();
+
+            return command;
+        }
+
+        private async Task<SqlCommand> DeleteRegistrationProcessAsync(SqlCommand command, string registrationProcessID, int position)
+        {
+            var reportID = await GetReportIDAsync(registrationProcessID);
+
+            command.CommandText = string
+                .Format(@"DELETE [dbo].[Report] WHERE [ReportID] = @ReportID{0}", position);
+
+            command.Parameters.AddWithValue(string.Format("@reportID{0}", position), reportID);
+
+            await command.ExecuteNonQueryAsync();
+
+            command.CommandText = string
+              .Format(@"DELETE [dbo].[RegistrationProcess] WHERE [RegistrationProcessID] = @RegistrationProcessID{0}", position);
+
+            command.Parameters.AddWithValue(string.Format("@RegistrationProcessID{0}", position), registrationProcessID);
+
+            await command.ExecuteNonQueryAsync();
+
+            return command;
+        }
+
+        private async Task<Guid> GetReportIDAsync(string registrationProcessID)
+        {
+            using var sql = new SqlConnection(_connectionString);
+            using var command = new SqlCommand("SELECT [ReportID] FROM [LogGRPC].[dbo].[RegistrationProcess] WHERE [RegistrationProcessID] = @RegistrationProcessID", sql);
+            await sql.OpenAsync();
+            command.Parameters.AddWithValue("@RegistrationProcessID", registrationProcessID);
+
+            var reportID = (Guid)await command.ExecuteScalarAsync();
+            sql.Close();
+
+            return reportID;
         }
     }
 }
