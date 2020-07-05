@@ -30,9 +30,9 @@ namespace regGRPC
 
                 command.Parameters.AddWithValue("@EnvFilterValue", request.EnvFilter);
                 command.Parameters.AddWithValue("@LevelFilterValue", request.LevelFilter);
-                command.Parameters.AddWithValue("@OrderByValue", request.OrderBy);
-                command.Parameters.AddWithValue("@SortDirectionValue", request.SortDirection);
-                command.Parameters.AddWithValue("@SearchTypeValue", request.SearchType);
+                command.Parameters.AddWithValue("@OrderByValue", request.OrderBy.ToLower().Equals("level") ? "level" : "events");
+                command.Parameters.AddWithValue("@SortDirectionValue", request.SortDirection.ToLower().Equals("asc") ? "asc" : "desc");
+                command.Parameters.AddWithValue("@SearchTypeValue", request.SearchType.ToLower().Equals("reportsource") ? "reportSource" : "reportDescription");
                 command.Parameters.AddWithValue("@SearchValueQ", request.SearchValue);
 
                 var reader = await command.ExecuteReaderAsync();
