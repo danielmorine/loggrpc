@@ -291,7 +291,7 @@ namespace regGRPC
                 var result = await AddAsync(request);
                 return new DefaultResponse { Status = result };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new DefaultResponse { Status = false };
             }                                       
@@ -334,7 +334,7 @@ namespace regGRPC
                 sql.Close();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 await transaction.RollbackAsync();
                 sql.Close();
@@ -350,6 +350,7 @@ namespace regGRPC
             command.Parameters.AddWithValue("@ReportSource", model.ReportSource);
             command.Parameters.AddWithValue("@LevelTypeID", model.LevelTypeID);
             command.Parameters.AddWithValue("@Events", model.Events);
+            command.Parameters.AddWithValue("@Details", model.Details);
 
             await command.ExecuteNonQueryAsync();
 
