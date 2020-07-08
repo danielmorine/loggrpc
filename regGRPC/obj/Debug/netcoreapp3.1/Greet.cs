@@ -24,61 +24,62 @@ namespace regGRPC {
     static GreetReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChJQcm90b3MvZ3JlZXQucHJvdG8SBWdyZWV0Iq0BChpSZWdpc3RyYXRpb25Q",
+            "ChJQcm90b3MvZ3JlZXQucHJvdG8SBWdyZWV0Ir4BChpSZWdpc3RyYXRpb25Q",
             "cm9jZXNzUmVxdWVzdBINCgV0aXRsZRgBIAEoCRIZChFyZXBvcnREZXNjcmlw",
             "dGlvbhgCIAEoCRIUCgxyZXBvcnRTb3VyY2UYAyABKAkSEwoLbGV2ZWxUeXBl",
             "SUQYBCABKAUSDgoGZXZlbnRzGAUgASgFEhkKEWVudmlyb25tZW50VHlwZUlE",
-            "GAYgASgFEg8KB293bmVySUQYByABKAkiIQoPRGVmYXVsdFJlc3BvbnNlEg4K",
-            "BnN0YXR1cxgBIAEoCCI7Ch5WYWxpZGF0ZUVudmlyb25tZW50VHlwZVJlcXVl",
-            "c3QSGQoRZW52aXJvbm1lbnRUeXBlSUQYASABKAUiLwoYVmFsaWRhdGVMZXZl",
-            "bFR5cGVSZXF1ZXN0EhMKC2xldmVsVHlwZUlEGAEgASgFIiIKIEdldEFsbFJl",
-            "Z2lzdHJhdGlvblByb2Nlc3NSZXF1ZXN0IlkKIUdldEFsbFJlZ2lzdHJhdGlv",
-            "blByb2Nlc3NSZXNwb25zZRI0CgRsaXN0GAEgAygLMiYuZ3JlZXQuR2V0QWxs",
-            "UmVnaXN0cmF0aW9uUHJvY2Vzc09iamVjdCLKAQofR2V0QWxsUmVnaXN0cmF0",
-            "aW9uUHJvY2Vzc09iamVjdBIZChFyZXBvcnREZXNjcmlwdGlvbhgBIAEoCRIU",
-            "CgxyZXBvcnRTb3VyY2UYAiABKAkSFQoNbGV2ZWxUeXBlTmFtZRgDIAEoCRIb",
-            "ChNlbnZpcm9ubWVudFR5cGVOYW1lGAQgASgJEg4KBmV2ZW50cxgFIAEoBRId",
-            "ChVyZWdpc3RyYXRpb25Qcm9jZXNzSUQYBiABKAkSEwoLY3JlYXRlZERhdGUY",
-            "ByABKAkiQgohR2V0QnlJZFJlZ2lzdHJhdGlvblByb2Nlc3NSZXF1ZXN0Eh0K",
-            "FXJlZ2lzdHJhdGlvblByb2Nlc3NJRBgBIAEoCSLjAQoiR2V0QnlJZFJlZ2lz",
-            "dHJhdGlvblByb2Nlc3NSZXNwb25zZRIUCgxyZXBvcnRTb3VyY2UYASABKAkS",
-            "FQoNbGV2ZWxUeXBlTmFtZRgCIAEoCRIOCgZldmVudHMYAyABKAUSHQoVcmVn",
-            "aXN0cmF0aW9uUHJvY2Vzc0lEGAQgASgJEhMKC2NyZWF0ZWREYXRlGAUgASgJ",
-            "Eg0KBXRpdGxlGAYgASgJEg8KB2RldGFpbHMYByABKAkSDwoHb3duZXJJRBgI",
-            "IAEoCRIbChNlbnZpcm9ubWVudFR5cGVOYW1lGAkgASgJIkUKJFZhbGlkYXRl",
-            "UmVnaXN0cmF0aW9uUHJvY2Vzc0lkUmVxdWVzdBIdChVyZWdpc3RyYXRpb25Q",
-            "cm9jZXNzSUQYASABKAkiOwoOQXJjaGl2ZVJlcXVlc3QSKQoEbGlzdBgBIAMo",
-            "CzIbLmdyZWV0LkFyY2hpdmVSZXF1ZXN0T2JqZWN0IiIKFEFyY2hpdmVSZXF1",
-            "ZXN0T2JqZWN0EgoKAmlkGAEgASgJIjoKDURlbGV0ZVJlcXVlc3QSKQoEbGlz",
-            "dBgBIAMoCzIbLmdyZWV0LkFyY2hpdmVSZXF1ZXN0T2JqZWN0IiEKE0RlbGV0",
-            "ZVJlcXVlc3RPYmplY3QSCgoCaWQYASABKAkimwEKIEZpbHRlclJlZ2lzdHJh",
-            "dGlvblByb2Nlc3NSZXF1ZXN0EhEKCWVudkZpbHRlchgBIAEoCRITCgtsZXZl",
-            "bEZpbHRlchgCIAEoCRIPCgdvcmRlckJ5GAMgASgJEhUKDXNvcnREaXJlY3Rp",
-            "b24YBCABKAkSEgoKc2VhcmNoVHlwZRgFIAEoCRITCgtzZWFyY2hWYWx1ZRgG",
-            "IAEoCTLMBgoHR3JlZXRlchJUChdTZW5kUmVnaXN0cmF0aW9uUHJvY2VzcxIh",
-            "LmdyZWV0LlJlZ2lzdHJhdGlvblByb2Nlc3NSZXF1ZXN0GhYuZ3JlZXQuRGVm",
-            "YXVsdFJlc3BvbnNlEmMKIlNlbmRWYWxpZGF0ZUVudmlyb25tZW50VHlwZVJl",
-            "cXVlc3QSJS5ncmVldC5WYWxpZGF0ZUVudmlyb25tZW50VHlwZVJlcXVlc3Qa",
-            "Fi5ncmVldC5EZWZhdWx0UmVzcG9uc2USVwocU2VuZFZhbGlkYXRlTGV2ZWxU",
-            "eXBlUmVxdWVzdBIfLmdyZWV0LlZhbGlkYXRlTGV2ZWxUeXBlUmVxdWVzdBoW",
-            "LmdyZWV0LkRlZmF1bHRSZXNwb25zZRJyCh1TZW5kR2V0QWxsUmVnaXN0cmF0",
-            "aW9uUHJvY2VzcxInLmdyZWV0LkdldEFsbFJlZ2lzdHJhdGlvblByb2Nlc3NS",
-            "ZXF1ZXN0GiguZ3JlZXQuR2V0QWxsUmVnaXN0cmF0aW9uUHJvY2Vzc1Jlc3Bv",
-            "bnNlEnEKGkdldEJ5SWRSZWdpc3RyYXRpb25Qcm9jZXNzEiguZ3JlZXQuR2V0",
-            "QnlJZFJlZ2lzdHJhdGlvblByb2Nlc3NSZXF1ZXN0GikuZ3JlZXQuR2V0QnlJ",
-            "ZFJlZ2lzdHJhdGlvblByb2Nlc3NSZXNwb25zZRJkCh1WYWxpZGF0ZVJlZ2lz",
-            "dHJhdGlvblByb2Nlc3NJZBIrLmdyZWV0LlZhbGlkYXRlUmVnaXN0cmF0aW9u",
-            "UHJvY2Vzc0lkUmVxdWVzdBoWLmdyZWV0LkRlZmF1bHRSZXNwb25zZRI4CgdB",
-            "cmNoaXZlEhUuZ3JlZXQuQXJjaGl2ZVJlcXVlc3QaFi5ncmVldC5EZWZhdWx0",
-            "UmVzcG9uc2USNgoGRGVsZXRlEhQuZ3JlZXQuRGVsZXRlUmVxdWVzdBoWLmdy",
-            "ZWV0LkRlZmF1bHRSZXNwb25zZRJuChlGaWx0ZXJSZWdpc3RyYXRpb25Qcm9j",
-            "ZXNzEicuZ3JlZXQuRmlsdGVyUmVnaXN0cmF0aW9uUHJvY2Vzc1JlcXVlc3Qa",
-            "KC5ncmVldC5HZXRBbGxSZWdpc3RyYXRpb25Qcm9jZXNzUmVzcG9uc2VCCqoC",
-            "B3JlZ0dSUENiBnByb3RvMw=="));
+            "GAYgASgFEg8KB293bmVySUQYByABKAkSDwoHZGV0YWlscxgIIAEoCSIhCg9E",
+            "ZWZhdWx0UmVzcG9uc2USDgoGc3RhdHVzGAEgASgIIjsKHlZhbGlkYXRlRW52",
+            "aXJvbm1lbnRUeXBlUmVxdWVzdBIZChFlbnZpcm9ubWVudFR5cGVJRBgBIAEo",
+            "BSIvChhWYWxpZGF0ZUxldmVsVHlwZVJlcXVlc3QSEwoLbGV2ZWxUeXBlSUQY",
+            "ASABKAUiIgogR2V0QWxsUmVnaXN0cmF0aW9uUHJvY2Vzc1JlcXVlc3QiWQoh",
+            "R2V0QWxsUmVnaXN0cmF0aW9uUHJvY2Vzc1Jlc3BvbnNlEjQKBGxpc3QYASAD",
+            "KAsyJi5ncmVldC5HZXRBbGxSZWdpc3RyYXRpb25Qcm9jZXNzT2JqZWN0IsoB",
+            "Ch9HZXRBbGxSZWdpc3RyYXRpb25Qcm9jZXNzT2JqZWN0EhkKEXJlcG9ydERl",
+            "c2NyaXB0aW9uGAEgASgJEhQKDHJlcG9ydFNvdXJjZRgCIAEoCRIVCg1sZXZl",
+            "bFR5cGVOYW1lGAMgASgJEhsKE2Vudmlyb25tZW50VHlwZU5hbWUYBCABKAkS",
+            "DgoGZXZlbnRzGAUgASgFEh0KFXJlZ2lzdHJhdGlvblByb2Nlc3NJRBgGIAEo",
+            "CRITCgtjcmVhdGVkRGF0ZRgHIAEoCSJCCiFHZXRCeUlkUmVnaXN0cmF0aW9u",
+            "UHJvY2Vzc1JlcXVlc3QSHQoVcmVnaXN0cmF0aW9uUHJvY2Vzc0lEGAEgASgJ",
+            "IuMBCiJHZXRCeUlkUmVnaXN0cmF0aW9uUHJvY2Vzc1Jlc3BvbnNlEhQKDHJl",
+            "cG9ydFNvdXJjZRgBIAEoCRIVCg1sZXZlbFR5cGVOYW1lGAIgASgJEg4KBmV2",
+            "ZW50cxgDIAEoBRIdChVyZWdpc3RyYXRpb25Qcm9jZXNzSUQYBCABKAkSEwoL",
+            "Y3JlYXRlZERhdGUYBSABKAkSDQoFdGl0bGUYBiABKAkSDwoHZGV0YWlscxgH",
+            "IAEoCRIPCgdvd25lcklEGAggASgJEhsKE2Vudmlyb25tZW50VHlwZU5hbWUY",
+            "CSABKAkiRQokVmFsaWRhdGVSZWdpc3RyYXRpb25Qcm9jZXNzSWRSZXF1ZXN0",
+            "Eh0KFXJlZ2lzdHJhdGlvblByb2Nlc3NJRBgBIAEoCSI7Cg5BcmNoaXZlUmVx",
+            "dWVzdBIpCgRsaXN0GAEgAygLMhsuZ3JlZXQuQXJjaGl2ZVJlcXVlc3RPYmpl",
+            "Y3QiIgoUQXJjaGl2ZVJlcXVlc3RPYmplY3QSCgoCaWQYASABKAkiOgoNRGVs",
+            "ZXRlUmVxdWVzdBIpCgRsaXN0GAEgAygLMhsuZ3JlZXQuQXJjaGl2ZVJlcXVl",
+            "c3RPYmplY3QiIQoTRGVsZXRlUmVxdWVzdE9iamVjdBIKCgJpZBgBIAEoCSKt",
+            "AQogRmlsdGVyUmVnaXN0cmF0aW9uUHJvY2Vzc1JlcXVlc3QSEQoJZW52Rmls",
+            "dGVyGAEgASgJEhMKC2xldmVsRmlsdGVyGAIgASgJEg8KB29yZGVyQnkYAyAB",
+            "KAkSFQoNc29ydERpcmVjdGlvbhgEIAEoCRISCgpzZWFyY2hUeXBlGAUgASgJ",
+            "EhMKC3NlYXJjaFZhbHVlGAYgASgJEhAKCGlzQWN0aXZlGAcgASgIMswGCgdH",
+            "cmVldGVyElQKF1NlbmRSZWdpc3RyYXRpb25Qcm9jZXNzEiEuZ3JlZXQuUmVn",
+            "aXN0cmF0aW9uUHJvY2Vzc1JlcXVlc3QaFi5ncmVldC5EZWZhdWx0UmVzcG9u",
+            "c2USYwoiU2VuZFZhbGlkYXRlRW52aXJvbm1lbnRUeXBlUmVxdWVzdBIlLmdy",
+            "ZWV0LlZhbGlkYXRlRW52aXJvbm1lbnRUeXBlUmVxdWVzdBoWLmdyZWV0LkRl",
+            "ZmF1bHRSZXNwb25zZRJXChxTZW5kVmFsaWRhdGVMZXZlbFR5cGVSZXF1ZXN0",
+            "Eh8uZ3JlZXQuVmFsaWRhdGVMZXZlbFR5cGVSZXF1ZXN0GhYuZ3JlZXQuRGVm",
+            "YXVsdFJlc3BvbnNlEnIKHVNlbmRHZXRBbGxSZWdpc3RyYXRpb25Qcm9jZXNz",
+            "EicuZ3JlZXQuR2V0QWxsUmVnaXN0cmF0aW9uUHJvY2Vzc1JlcXVlc3QaKC5n",
+            "cmVldC5HZXRBbGxSZWdpc3RyYXRpb25Qcm9jZXNzUmVzcG9uc2UScQoaR2V0",
+            "QnlJZFJlZ2lzdHJhdGlvblByb2Nlc3MSKC5ncmVldC5HZXRCeUlkUmVnaXN0",
+            "cmF0aW9uUHJvY2Vzc1JlcXVlc3QaKS5ncmVldC5HZXRCeUlkUmVnaXN0cmF0",
+            "aW9uUHJvY2Vzc1Jlc3BvbnNlEmQKHVZhbGlkYXRlUmVnaXN0cmF0aW9uUHJv",
+            "Y2Vzc0lkEisuZ3JlZXQuVmFsaWRhdGVSZWdpc3RyYXRpb25Qcm9jZXNzSWRS",
+            "ZXF1ZXN0GhYuZ3JlZXQuRGVmYXVsdFJlc3BvbnNlEjgKB0FyY2hpdmUSFS5n",
+            "cmVldC5BcmNoaXZlUmVxdWVzdBoWLmdyZWV0LkRlZmF1bHRSZXNwb25zZRI2",
+            "CgZEZWxldGUSFC5ncmVldC5EZWxldGVSZXF1ZXN0GhYuZ3JlZXQuRGVmYXVs",
+            "dFJlc3BvbnNlEm4KGUZpbHRlclJlZ2lzdHJhdGlvblByb2Nlc3MSJy5ncmVl",
+            "dC5GaWx0ZXJSZWdpc3RyYXRpb25Qcm9jZXNzUmVxdWVzdBooLmdyZWV0Lkdl",
+            "dEFsbFJlZ2lzdHJhdGlvblByb2Nlc3NSZXNwb25zZUIKqgIHcmVnR1JQQ2IG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.RegistrationProcessRequest), global::regGRPC.RegistrationProcessRequest.Parser, new[]{ "Title", "ReportDescription", "ReportSource", "LevelTypeID", "Events", "EnvironmentTypeID", "OwnerID" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.RegistrationProcessRequest), global::regGRPC.RegistrationProcessRequest.Parser, new[]{ "Title", "ReportDescription", "ReportSource", "LevelTypeID", "Events", "EnvironmentTypeID", "OwnerID", "Details" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.DefaultResponse), global::regGRPC.DefaultResponse.Parser, new[]{ "Status" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.ValidateEnvironmentTypeRequest), global::regGRPC.ValidateEnvironmentTypeRequest.Parser, new[]{ "EnvironmentTypeID" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.ValidateLevelTypeRequest), global::regGRPC.ValidateLevelTypeRequest.Parser, new[]{ "LevelTypeID" }, null, null, null, null),
@@ -92,7 +93,7 @@ namespace regGRPC {
             new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.ArchiveRequestObject), global::regGRPC.ArchiveRequestObject.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.DeleteRequest), global::regGRPC.DeleteRequest.Parser, new[]{ "List" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.DeleteRequestObject), global::regGRPC.DeleteRequestObject.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.FilterRegistrationProcessRequest), global::regGRPC.FilterRegistrationProcessRequest.Parser, new[]{ "EnvFilter", "LevelFilter", "OrderBy", "SortDirection", "SearchType", "SearchValue" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::regGRPC.FilterRegistrationProcessRequest), global::regGRPC.FilterRegistrationProcessRequest.Parser, new[]{ "EnvFilter", "LevelFilter", "OrderBy", "SortDirection", "SearchType", "SearchValue", "IsActive" }, null, null, null, null)
           }));
     }
     #endregion
@@ -131,6 +132,7 @@ namespace regGRPC {
       events_ = other.events_;
       environmentTypeID_ = other.environmentTypeID_;
       ownerID_ = other.ownerID_;
+      details_ = other.details_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -216,6 +218,17 @@ namespace regGRPC {
       }
     }
 
+    /// <summary>Field number for the "details" field.</summary>
+    public const int DetailsFieldNumber = 8;
+    private string details_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Details {
+      get { return details_; }
+      set {
+        details_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as RegistrationProcessRequest);
@@ -236,6 +249,7 @@ namespace regGRPC {
       if (Events != other.Events) return false;
       if (EnvironmentTypeID != other.EnvironmentTypeID) return false;
       if (OwnerID != other.OwnerID) return false;
+      if (Details != other.Details) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -249,6 +263,7 @@ namespace regGRPC {
       if (Events != 0) hash ^= Events.GetHashCode();
       if (EnvironmentTypeID != 0) hash ^= EnvironmentTypeID.GetHashCode();
       if (OwnerID.Length != 0) hash ^= OwnerID.GetHashCode();
+      if (Details.Length != 0) hash ^= Details.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -290,6 +305,10 @@ namespace regGRPC {
         output.WriteRawTag(58);
         output.WriteString(OwnerID);
       }
+      if (Details.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(Details);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -318,6 +337,9 @@ namespace regGRPC {
       }
       if (OwnerID.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(OwnerID);
+      }
+      if (Details.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Details);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -350,6 +372,9 @@ namespace regGRPC {
       }
       if (other.OwnerID.Length != 0) {
         OwnerID = other.OwnerID;
+      }
+      if (other.Details.Length != 0) {
+        Details = other.Details;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -388,6 +413,10 @@ namespace regGRPC {
           }
           case 58: {
             OwnerID = input.ReadString();
+            break;
+          }
+          case 66: {
+            Details = input.ReadString();
             break;
           }
         }
@@ -2444,6 +2473,7 @@ namespace regGRPC {
       sortDirection_ = other.sortDirection_;
       searchType_ = other.searchType_;
       searchValue_ = other.searchValue_;
+      isActive_ = other.isActive_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2518,6 +2548,17 @@ namespace regGRPC {
       }
     }
 
+    /// <summary>Field number for the "isActive" field.</summary>
+    public const int IsActiveFieldNumber = 7;
+    private bool isActive_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool IsActive {
+      get { return isActive_; }
+      set {
+        isActive_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as FilterRegistrationProcessRequest);
@@ -2537,6 +2578,7 @@ namespace regGRPC {
       if (SortDirection != other.SortDirection) return false;
       if (SearchType != other.SearchType) return false;
       if (SearchValue != other.SearchValue) return false;
+      if (IsActive != other.IsActive) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2549,6 +2591,7 @@ namespace regGRPC {
       if (SortDirection.Length != 0) hash ^= SortDirection.GetHashCode();
       if (SearchType.Length != 0) hash ^= SearchType.GetHashCode();
       if (SearchValue.Length != 0) hash ^= SearchValue.GetHashCode();
+      if (IsActive != false) hash ^= IsActive.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2586,6 +2629,10 @@ namespace regGRPC {
         output.WriteRawTag(50);
         output.WriteString(SearchValue);
       }
+      if (IsActive != false) {
+        output.WriteRawTag(56);
+        output.WriteBool(IsActive);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2611,6 +2658,9 @@ namespace regGRPC {
       }
       if (SearchValue.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(SearchValue);
+      }
+      if (IsActive != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2640,6 +2690,9 @@ namespace regGRPC {
       }
       if (other.SearchValue.Length != 0) {
         SearchValue = other.SearchValue;
+      }
+      if (other.IsActive != false) {
+        IsActive = other.IsActive;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2674,6 +2727,10 @@ namespace regGRPC {
           }
           case 50: {
             SearchValue = input.ReadString();
+            break;
+          }
+          case 56: {
+            IsActive = input.ReadBool();
             break;
           }
         }

@@ -34,6 +34,7 @@ namespace regGRPC
                 command.Parameters.AddWithValue("@SortDirectionValue", request.SortDirection.ToLower().Equals("asc") ? "asc" : "desc");
                 command.Parameters.AddWithValue("@SearchTypeValue", request.SearchType.ToLower().Equals("reportsource") ? "reportSource" : "reportDescription");
                 command.Parameters.AddWithValue("@SearchValueQ", request.SearchValue);
+                command.Parameters.AddWithValue("@IsActiveValue", request.IsActive);
 
                 var reader = await command.ExecuteReaderAsync();
 
@@ -310,7 +311,8 @@ namespace regGRPC
                 LevelTypeID = (byte)request.LevelTypeID,
                 ReportDescription = request.ReportDescription,
                 ReportSource = request.ReportSource,
-                Title = request.Title
+                Title = request.Title,
+                Details = request.Details
             };
 
             var registrationProcess = new RegistrationProcess

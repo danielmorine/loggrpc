@@ -13,6 +13,7 @@
                           ,[ReportSource]
                           ,[LevelTypeID]
                           ,[Events]
+                          ,[Details]
                     ) VALUES (
 	                       @ReportID
                           ,@Title
@@ -20,6 +21,7 @@
                           ,@ReportSource
                           ,@LevelTypeID
                           ,@Events
+                          ,@Details
                     )";
         }
 
@@ -84,7 +86,7 @@
                     INNER JOIN [dbo].[RegistrationProcess] AS RP ON RE.ReportID = RP.ReportID
                     INNER JOIN [dbo].[EnvironmentType] AS [EV] ON [RP].[EnvironmentTypeID] = [EV].[EnvironmentTypeID]
                     INNER JOIN [dbo].[LevelType] AS [LT] ON [RE].[LevelTypeID] = [LT].[LevelTypeID]
-                    WHERE [RP].[IsActive] = 1 AND
+                    WHERE [RP].[IsActive] = @IsActiveValue AND
                           (@HasEnv = 0 OR (RP.EnvironmentTypeID = @EnvFilter)) AND 
 	                      (@HasLevel = 0 OR ([RE].[LevelTypeID] = @LevelFilter)) AND
 	                      (@HasSearch = 0 OR (@SearchType = 'reportSource' AND [RE].[ReportSource] LIKE '%' + @SearchValueQ +'%') OR (RE.ReportDescription LIKE '%' + @SearchValueQ +'%'))
