@@ -286,15 +286,8 @@ namespace regGRPC
         }
         public override async Task<DefaultResponse> SendRegistrationProcess(RegistrationProcessRequest request, ServerCallContext context)
         {
-            try
-            {
                 var result = await AddAsync(request);
-                return new DefaultResponse { Status = result };
-            }
-            catch (Exception ex)
-            {
-                return new DefaultResponse { Status = false };
-            }                                       
+                return new DefaultResponse { Status = result };                                                          
         }
         private async Task<bool> AddAsync(RegistrationProcessRequest request)
         {            
