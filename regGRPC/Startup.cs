@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using regGRPC.Extensions.IOC;
 using Repository;
+using System;
 
 namespace regGRPC
 {
@@ -15,13 +16,13 @@ namespace regGRPC
         public IConfiguration Configuration { get; }
 
 
-        public Startup(IConfiguration configuration, IWebHostEnvironment env)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
 
             var builder = new ConfigurationBuilder()
-           .SetBasePath(env.ContentRootPath)
-           .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+           .SetBasePath(AppContext.BaseDirectory)
+           .AddJsonFile("appsettings.json", true, true);
 
             Configuration = builder.Build();
         }

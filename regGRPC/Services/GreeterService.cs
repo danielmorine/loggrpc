@@ -16,9 +16,9 @@ namespace regGRPC
     {
         private readonly string _connectionString;
 
-        public GreeterService(IConfiguration configuration)
+        public GreeterService()
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = "Data Source=DANIEL;Initial Catalog=LogGRPC;Integrated Security=True";
         }
         public override async Task<GetAllRegistrationProcessResponse> FilterRegistrationProcess(FilterRegistrationProcessRequest request, ServerCallContext context)
         {
