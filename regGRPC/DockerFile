@@ -1,10 +1,10 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as builder
-
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /app
 
-EXPOSE 5000
+ENV ASPNETCORE_URLS http://+:5000
 
-RUN dotnet restore
+EXPOSE 5000
+EXPOSE 5001
 
 RUN mkdir temp && chmod 777 -R temp
 COPY . temp/
@@ -12,13 +12,7 @@ RUN cd temp/ && dotnet restore && dotnet build && dotnet test
 RUN cd temp/ && mkdir dist && chmod 777 -R dist/
 RUN cd temp/ && dotnet publish -o dist/
 
-# Runtime image creation
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-
-# Uncomment the line below if running with HTTPS
-# ENV ASPNETCORE_URLS=https://+:443
-
 WORKDIR /app
 COPY --from=build /app/temp/dist ./
-
-ENTRYPOINT [ "dotnet", "regGRPC.dll" ]
+ENTRYPOINT ["dotnet", "regGRPC.dll"]
