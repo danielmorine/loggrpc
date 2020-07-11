@@ -20,6 +20,10 @@ namespace regGRPC
         {
             _connectionString = "Data Source=DANIEL;Initial Catalog=LogGRPC;Integrated Security=True";
         }
+        public override Task<CallResponse> CallGRPC(CallRequest request, ServerCallContext context)
+        {
+            return Task.FromResult(new CallResponse { Reponse = "cheguei no GRPC" });
+        }
         public override async Task<GetAllRegistrationProcessResponse> FilterRegistrationProcess(FilterRegistrationProcessRequest request, ServerCallContext context)
         {
             var registrationProcess = new GetAllRegistrationProcessResponse();

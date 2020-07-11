@@ -17,6 +17,8 @@ service Greeter {
   rpc Archive (ArchiveRequest) returns (DefaultResponse);
   rpc Delete (DeleteRequest) returns (DefaultResponse);
   rpc FilterRegistrationProcess (FilterRegistrationProcessRequest) returns (GetAllRegistrationProcessResponse);
+  rpc CallGRPC (CallRequest) returns (CallResponse);
+
 }
 
 message RegistrationProcessRequest {
@@ -74,10 +76,17 @@ message GetByIdRegistrationProcessResponse {
 	string details = 7;
 	string ownerID = 8;
 	string environmentTypeName = 9;
+
 }
 
 message ValidateRegistrationProcessIdRequest {
 	string registrationProcessID = 1;
+}
+message CallRequest {
+
+}
+message CallResponse {
+	string reponse = 1;
 }
 
 
