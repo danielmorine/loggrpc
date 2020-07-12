@@ -5,4 +5,4 @@ EXPOSE 80
 EXPOSE 443
 EXPOSE 5001
 
-ENTRYPOINT ["dotnet", "run"]
+ENTRYPOINT ["dotnet run", "regGRPC.sln"]
