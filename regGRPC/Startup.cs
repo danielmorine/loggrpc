@@ -47,7 +47,6 @@ namespace regGRPC
             }
 
             app.UseRouting();
-            app.UseHttpsRedirection();
 
             var provider = app.ApplicationServices;
 
