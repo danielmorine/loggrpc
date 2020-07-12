@@ -1,8 +1,18 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR /app
 
-ENV ASPNETCORE_URLS https://+:5001
-EXPOSE 80
-EXPOSE 443
+ENV ASPNETCORE_URLS http://+:5000
+
+EXPOSE 5000
 EXPOSE 5001
 
-ENTRYPOINT ["dotnet run", " \loggrpc\regGRPC.sln"]
+RUN mkdir temp && chmod 777 -R temp
+COPY . temp/
+RUN cd temp/ && dotnet restore && dotnet build && dotnet test
+RUN cd temp/ && mkdir dist && chmod 777 -R dist/
+RUN cd temp/ && dotnet publish -o dist/
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+WORKDIR /app
+COPY --from=build /app/temp/dist ./
+ENTRYPOINT ["dotnet", "regGRPC.dll"]

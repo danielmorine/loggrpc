@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Hosting;
+using System.Net;
 
 namespace regGRPC
 {
@@ -16,7 +18,14 @@ namespace regGRPC
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .ConfigureKestrel(options =>
+                     {
+                         options.Listen(IPAddress.Any, 5001, listenOptions =>
+                         {
+                             listenOptions.Protocols = HttpProtocols.Http2;
+                         });
+                     });
                 });
     }
 }
